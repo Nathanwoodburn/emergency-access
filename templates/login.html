@@ -41,7 +41,10 @@
     <div class="spacer"></div>
     <div class="centre">
         <h1>YubiKey Authentication</h1>
-        <p>Please insert your YubiKey and press it to authenticate.</p>
+        <p>Make sure the input field is selected and press your YubiKey to authenticate.</p>
+        {% if custom_instructions %}
+            <p>{{ custom_instructions }}</p>
+        {% endif %}
         
         {% if error %}
             <div class="error">{{ error }}</div>

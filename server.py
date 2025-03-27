@@ -129,7 +129,9 @@ def login():
             except Exception as e:
                 error = f"Authentication error: {str(e)}"
     
-    return render_template("login.html", error=error)
+    custom_instructions = os.getenv("YUBIKEY_INSTRUCTIONS")
+
+    return render_template("login.html", error=error, custom_instructions=custom_instructions)
 
 @app.route("/logout")
 def logout():
