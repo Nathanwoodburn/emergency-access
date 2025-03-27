@@ -85,6 +85,69 @@
         .emergency-content ul ul ul {
             list-style-type: square;
         }
+        
+        /* Password hiding feature */
+        .password-hidden {
+            display: inline-block;
+            background-color: #333;
+            color: transparent;
+            border-radius: 4px;
+            padding: 2px 8px;
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+            position: relative;
+        }
+        
+        .password-hidden::after {
+            content: "Click to reveal";
+            position: absolute;
+            color: #aaa;
+            font-size: 0.8em;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+        
+        .password-hidden.revealed {
+            color: #e9e9e9;
+            text-shadow: none;
+        }
+        
+        .password-hidden.revealed::after {
+            content: "";
+        }
+        
+        /* Hide code class for inline code */
+        code.hide-password {
+            background-color: #333;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+            cursor: pointer;
+            position: relative;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        code.hide-password::after {
+            content: "🔒";
+            position: absolute;
+            color: #aaa;
+            font-size: 1em;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        code.hide-password.revealed {
+            color: #e9e9e9;
+            text-shadow: none;
+        }
+        
+        code.hide-password.revealed::after {
+            content: "";
+        }
     </style>
 </head>
 
@@ -113,7 +176,52 @@
                 link.setAttribute('target', '_blank');
                 link.setAttribute('rel', 'noopener');
             });
+            
+            // Process special password blocks
+            processPasswordBlocks();
+            
+            // Process inline code with hide-password class
+            processPasswordCodeElements();
         });
+        
+        function processPasswordBlocks() {
+            // Look for div or pre elements with data-type="password"
+            const passwordElements = document.querySelectorAll('[data-type="password"]');
+            
+            passwordElements.forEach(element => {
+                element.classList.add('password-hidden');
+                
+                element.addEventListener('click', function() {
+                    this.classList.toggle('revealed');
+                });
+            });
+        }
+        
+        function processPasswordCodeElements() {
+            // Find all code blocks with class "hide-password"
+            const passwordCodes = document.querySelectorAll('code.hide-password, .hide-password code');
+            
+            passwordCodes.forEach(code => {
+                // If the parent is not already a password-hidden element
+                if (!code.parentElement.classList.contains('password-hidden')) {
+                    code.addEventListener('click', function() {
+                        this.classList.toggle('revealed');
+                    });
+                }
+            });
+            
+            // Convert all `password:` prefixed code elements
+            const allCodeElements = document.querySelectorAll('code');
+            allCodeElements.forEach(code => {
+                if (code.textContent.startsWith('password:')) {
+                    code.textContent = code.textContent.replace('password:', '');
+                    code.classList.add('hide-password');
+                    code.addEventListener('click', function() {
+                        this.classList.toggle('revealed');
+                    });
+                }
+            });
+        }
     </script>
 </body>
 

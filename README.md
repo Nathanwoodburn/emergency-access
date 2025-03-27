@@ -8,6 +8,7 @@ A secure emergency information access system using YubiKey authentication. This 
 - Markdown rendering with syntax highlighting
 - Webhook for remote updates of emergency information
 - Mobile-friendly interface
+- Hidden passwords that reveal when clicked
 
 ## Setup
 
