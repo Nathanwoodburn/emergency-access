@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nathan.Woodburn/</title>
+    <link rel="icon" href="/assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <style>
+        .error {
+            color: #ff5555;
+            margin-top: 10px;
+        }
+        input {
+            padding: 8px;
+            margin: 15px 0;
+            background-color: #222;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="spacer"></div>
+    <div class="centre">
+        <h1>YubiKey Authentication</h1>
+        <p>Please insert your YubiKey and press it to authenticate.</p>
+        
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST" action="/login">
+            <div>
+                <input type="text" id="otp" name="otp" placeholder="Press your YubiKey..." autofocus>
+            </div>
+            <div>
+                <button type="submit">Authenticate</button>
+            </div>
+        </form>
+        
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+
+</html>

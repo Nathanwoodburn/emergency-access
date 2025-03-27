@@ -13,6 +13,12 @@
     <div class="spacer"></div>
     <div class="centre">
         <h1>Nathan.Woodburn/</h1>
+        {% if authenticated %}
+            <p><a href="/emergency">Access Emergency Information</a></p>
+            <p><a href="/logout">Logout</a></p>
+        {% else %}
+            <p><a href="/login">Login with YubiKey</a></p>
+        {% endif %}
     </div>
 </body>
 

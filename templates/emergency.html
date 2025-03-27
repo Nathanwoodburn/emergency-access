@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Information - Nathan.Woodburn/</title>
+    <link rel="icon" href="/assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <!-- Remove highlight.js as it's not needed with Pygments -->
+    <style>
+        .emergency-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px;
+            background-color: #111;
+            border-radius: 8px;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        /* Additional styling for code blocks */
+        .codehilite {
+            padding: 0;
+            margin: 1em 0;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        .codehilite pre {
+            padding: 10px;
+            margin: 0;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        /* Fix code display in dark theme */
+        .codehilite .k { color: #569cd6; } /* Keyword */
+        .codehilite .s, .codehilite .s1, .codehilite .s2 { color: #ce9178; } /* String */
+        .codehilite .c, .codehilite .c1 { color: #6a9955; } /* Comment */
+        .codehilite .n { color: #dcdcdc; } /* Name */
+        .codehilite .o { color: #d4d4d4; } /* Operator */
+        .codehilite .p { color: #d4d4d4; } /* Punctuation */
+        
+        /* YAML-specific styles */
+        .codehilite .l { color: #b5cea8; } /* Literals */
+        .codehilite .kn { color: #569cd6; } /* Key Name (YAML keys) */
+        
+        /* Styling for lists */
+        .emergency-content ol {
+            list-style-type: decimal;
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+        
+        .emergency-content ol ol {
+            list-style-type: lower-alpha;
+        }
+        
+        .emergency-content ol ol ol {
+            list-style-type: lower-roman;
+        }
+        
+        .emergency-content li {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+        
+        /* Adding some spacing between list items for better readability */
+        .emergency-content li + li {
+            margin-top: 8px;
+        }
+        
+        /* Styling for unordered lists as well */
+        .emergency-content ul {
+            list-style-type: disc;
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+        
+        .emergency-content ul ul {
+            list-style-type: circle;
+        }
+        
+        .emergency-content ul ul ul {
+            list-style-type: square;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="spacer"></div>
+    <div class="centre">
+        <h1>Emergency Information</h1>
+        
+        <div class="emergency-content">
+            {{ content|safe }}
+        </div>
+        
+        <div class="controls">
+            <p><a href="/">Back to Home</a> | <a href="/logout">Logout</a></p>
+        </div>
+    </div>
+    
+    <!-- Script to make all content links open in a new tab -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all links in the emergency content
+            const contentLinks = document.querySelectorAll('.emergency-content a');
+            
+            // Add target="_blank" and rel="noopener" (for security) to each link
+            contentLinks.forEach(link => {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener');
+            });
+        });
+    </script>
+</body>
+
+</html>

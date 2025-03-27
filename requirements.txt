@@ -2,3 +2,7 @@ flask
 gunicorn
 requests
 python-dotenv
+yubico-client
+Flask-Session
+markdown
+pygments
